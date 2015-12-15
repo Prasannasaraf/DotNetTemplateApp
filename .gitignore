@@ -194,3 +194,9 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+# Gem dependency file
+Gemfile.lock
+
+# Nuget Package manager
+nuget.exe
