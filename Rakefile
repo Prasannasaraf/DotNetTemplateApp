@@ -19,11 +19,18 @@ task :deploy  do
 	sh "FirstAspDotNetApp/obj/Debug/Package/FirstAspDotNetApp.deploy.cmd /Y"
 end
 
-desc "Clean"
+desc "Remove all build Files"
 task :clean  do
 	msbuild = "C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe"
 	sh "#{msbuild} FirstAspDotNetSolution.sln /t:Clean /p:VisualStudioVersion=12.0 " 
 end
+
+
+desc "Download nuget.exe"
+task :setup do
+	nuget = "https://www.nuget.org/nuget.exe"
+	sh "curl -O #{nuget}"
+end	
 
 
 desc "Build and Deploy"
