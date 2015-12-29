@@ -1,5 +1,8 @@
 require 'bundler/setup'
 
+
+$web_root = File.expand_path(".", Dir.pwd).gsub('/','\\')
+
 desc "Build .Net appplication and Package using MSBuild"
 task :build  do
 	msbuild = "C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe"
@@ -35,3 +38,11 @@ end
 
 desc "Build and Deploy"
 task :default => [:clean, :build, :deploy]
+
+desc "Nuget Install"
+task :nuget_install  do
+	nuget_exe = "#{$web_root}/tools/nuget.exe"
+	destination_directory = "#{$web_root}/FirstAspDotNetApp/packages.config"
+	output_directory = "#{$web_root}\\packages"
+	sh "#{nuget_exe} install #{destination_directory} -o #{output_directory}"
+end
